@@ -1,7 +1,6 @@
 package course
 
 import (
-	"errors"
 	"fmt"
 	"net/url"
 	"time"
@@ -56,7 +55,7 @@ func (c *clientHTTP) Get(id string) (*domain.Course, error) {
 			return nil, ErrNotFound{dataResponse.Message}
 		}
 
-		return nil, errors.New(dataResponse.Message)
+		return nil, fmt.Errorf("%s", dataResponse.Message)
 	}
 
 	return dataResponse.Data.(*domain.Course), nil
